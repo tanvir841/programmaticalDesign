@@ -34,6 +34,8 @@ class ViewController: UIViewController {
     
     private let previousButton: UIButton = {
         let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("previous", for: .normal)
         return button
     }()
     override func viewDidLoad() {
@@ -42,16 +44,22 @@ class ViewController: UIViewController {
         //view.addSubview(pawImageView)
         view.addSubview(descriptionTextView)
         
-        setupBottomControl()
+        
         setupLayout()
+        setupBottomControl()
         //imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         // Do any additional setup after loading the view.
     }
-    fileprivate func setupBottomControl(){
-        view.addSubview(previousButton)
-        previousButton.backgroundColor = .red
-        //previousButton.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
-        NSLayoutConstraint.activate([previousButton.topAnchor.constraint(equalTo:    view.safeAreaLayoutGuide.topAnchor),previousButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),previousButton.trailingAnchor.constraint(equalTo:  view.trailingAnchor),previousButton.heightAnchor.constraint(equalToConstant: 50)])
+   func setupBottomControl(){
+    previousButton.backgroundColor = .red
+
+//        view.addSubview(previousButton)
+                //previousButton.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
+        NSLayoutConstraint.activate([
+            previousButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            previousButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            previousButton.trailingAnchor.constraint(equalTo:  view.trailingAnchor),
+            previousButton.heightAnchor.constraint(equalToConstant: 50)])
     }
     private func setupLayout() {
         
@@ -90,11 +98,13 @@ class ViewController: UIViewController {
         bottomImageContainerView.backgroundColor = .cyan
         view.addSubview(bottomImageContainerView)
         bottomImageContainerView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         bottomImageContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         bottomImageContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         bottomImageContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         bottomImageContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3).isActive = true
+        
+        bottomImageContainerView.addSubview(previousButton)
     }
 
 }

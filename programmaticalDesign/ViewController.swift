@@ -36,6 +36,25 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("previous", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+
+        return button
+    }()
+    
+    private let scroll: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("previous", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+
+        return button
+    }()
+    private let Next: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("previous", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+
         return button
     }()
     override func viewDidLoad() {
@@ -51,15 +70,23 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
    func setupBottomControl(){
-    previousButton.backgroundColor = .red
-
+    
+    previousButton.backgroundColor = .cyan
+    
+    scroll.backgroundColor = .yellow
+    
+    Next.backgroundColor = .blue
+    
+    let bottomControlStackView = UIStackView(arrangedSubviews: [previousButton, scroll, Next])
+    view.addSubview(bottomControlStackView)
+    bottomControlStackView.translatesAutoresizingMaskIntoConstraints = false
+    bottomControlStackView.distribution = .fillEqually
 //        view.addSubview(previousButton)
                 //previousButton.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
-        NSLayoutConstraint.activate([
-            previousButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            previousButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            previousButton.trailingAnchor.constraint(equalTo:  view.trailingAnchor),
-            previousButton.heightAnchor.constraint(equalToConstant: 50)])
+    bottomControlStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        bottomControlStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        bottomControlStackView.trailingAnchor.constraint(equalTo:  view.trailingAnchor).isActive = true
+        bottomControlStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     private func setupLayout() {
         
@@ -67,7 +94,6 @@ class ViewController: UIViewController {
             topImageContainerView.backgroundColor = .blue
         view.addSubview(topImageContainerView)
         topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
-        
         topImageContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         topImageContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         topImageContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
